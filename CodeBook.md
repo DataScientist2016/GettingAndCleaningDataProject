@@ -2,7 +2,7 @@
 title: "CodeBook"
 output: html_document
 ---
-Getting and Cleaning Data Course Projectless 
+Getting and Cleaning Data Course Project
 ======================================
 ****************************************************
 Description of the DATA:
