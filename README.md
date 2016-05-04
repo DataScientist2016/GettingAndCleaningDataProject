@@ -26,3 +26,17 @@ Review criteria:
     -GitHub contains a code book that modifies and updates the available codebooks with the data to indicate all the variables and summaries calculated, along with units, and any other relevant information.
     -The README that explains the analysis files is clear and understandable.
     -The work submitted for this project is the work of the student who submitted it.
+
+Files
+------
+
+The repository contains the following files:
+
+- CodeBook.md (describes the project and lists the steps commited)
+
+- run_analysis.R (script code to get tidy data from the raw data)
+
+- Tidy.txt (the results of the programming code)
+
+
+
