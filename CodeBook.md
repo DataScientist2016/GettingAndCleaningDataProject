@@ -80,7 +80,9 @@ tBodyGyroMean
 tBodyGyroJerkMean
 
 ******************************************************
-0.Download the data
+
+0. Download the data
+======================================
 
 Libraries
 
@@ -114,7 +116,8 @@ subjectTest <- read.table("./gettingdata/UCI HAR Dataset/test/subject_test.txt",
 actTest <- read.table("./gettingdata/UCI HAR Dataset/test/y_test.txt", header = FALSE)
 dataTest <- read.table("./gettingdata/UCI HAR Dataset/test/X_test.txt", header = FALSE)
 
-1.Merge the training and the test sets to create one data set
+1. Merge the training and the test sets to create one data set
+--------------------------------------------------------------
 
 Merge the data
 
@@ -132,7 +135,8 @@ dataset <- cbind(subject,activityData,activities, data)
 
 setnames(activities, names(activities), c("activityNum","activityName"))
 
-2.Extract only the measurements on the mean and standard deviation for each measurement
+2. Extract only the measurements on the mean and standard deviation for each measurement
+---------------------------------------------------------------------------------------
 
 selecting only the columns that contains means and std
 
@@ -140,13 +144,15 @@ columnsMeanStd <- grep(".*subject.*|.*activityNum.*|.*mean.*|.*std.*", names(dat
 columns <- c(columnsMeanStd, 562, 563)
 datasetMeanStd <- dataset[,columns]
 
-3.Use descriptive activity names to name the activities in the data set
+3. Use descriptive activity names to name the activities in the data set
+------------------------------------------------------------------------
 
 tab <- merge(activities, datasetMeanStd , by="activityNum", all.x=TRUE, sort=FALSE)
 tab$activityName <- as.character(tab$activityName)
 tab$asubject <- as.character(tab$subject)
 
-4.Appropriately label the data set with descriptive variable names
+4. Appropriately label the data set with descriptive variable names
+------------------------------------------------------------------
 
 names(tab)<-gsub("Acc", "Accelerometer", names(tab))
 names(tab)<-gsub("angle", "Angle", names(tab))
@@ -161,7 +167,7 @@ names(tab)<-gsub("-std()", "STD", names(tab), ignore.case = TRUE)
 names(tab)<-gsub("-freq()", "Frequency", names(tab), ignore.case = TRUE)
 names(tab)<-gsub("gravity", "Gravity", names(tab))
 
-5.From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject
+5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject
 
 tidy <- aggregate(. ~subject + activityName, tab, mean)
 tidy <- tidy[order(tidy$subject,tidy$activityName),]
